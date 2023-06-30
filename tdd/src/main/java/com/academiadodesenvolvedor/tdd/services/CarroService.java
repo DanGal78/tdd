@@ -4,6 +4,8 @@ import com.academiadodesenvolvedor.tdd.models.Carro;
 import com.academiadodesenvolvedor.tdd.repositories.CarroRepository;
 import com.academiadodesenvolvedor.tdd.services.contratos.CarroServiceContrato;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,12 @@ public class CarroService  implements CarroServiceContrato {
         return carroRepository.findAll();
 
     }
+
+    @Override
+    public Page<Carro> listarCarros(Pageable page) {
+        return  carroRepository.findAll(page);
+    }
+
     @Override
     public List<Carro> listarCarrosPorMarca(String marca) {
         return carroRepository.findAllByMarca(marca);
