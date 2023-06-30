@@ -1,6 +1,7 @@
 package com.academiadodesenvolvedor.tdd.models;
 
 
+import com.academiadodesenvolvedor.tdd.api.dtos.CarroDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,5 +27,16 @@ public class Carro {
     private String combustivel;
     @NonNull
     private String cor;
+
+    public CarroDTO toDTO(){
+        return new CarroDTO(
+                this.getId(),
+                this.getMarca(),
+                this.getModelo(),
+                this.getAno(),
+                this.getCombustivel(),
+                this.getCor()
+        );
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.academiadodesenvolvedor.tdd.api.v1.resources;
 
 import com.academiadodesenvolvedor.tdd.api.form.CreateCarroForm;
-import com.academiadodesenvolvedor.tdd.api.v1.resouces.CarroResource;
+import com.academiadodesenvolvedor.tdd.api.v1.resouces.CarroResouce;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,8 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@WebMvcTest(controllers = CarroResource.class)
-public class CarroResourceTest {
+public class CarroResouceTest {
 
     @Autowired
     private MockMvc mvc;
