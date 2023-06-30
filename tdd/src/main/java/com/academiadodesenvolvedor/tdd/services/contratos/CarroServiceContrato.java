@@ -15,4 +15,9 @@ public interface CarroServiceContrato {
     Carro buscarPorId(long id);
 
     Carro atualizarCarro(Carro carro);
+
+    void apagarCarro(long id);
+
+
+
 }

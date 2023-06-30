@@ -6,8 +6,6 @@ import com.academiadodesenvolvedor.tdd.services.contratos.CarroServiceContrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,5 +39,12 @@ public class CarroService  implements CarroServiceContrato {
     @Override
     public Carro atualizarCarro(Carro carro) {
         return this.carroRepository.save(carro);
+    }
+
+    @Override
+    public  void apagarCarro(long id) {
+        Carro carro = buscarPorId(id);
+
+        carroRepository.delete(carro);
     }
 }
