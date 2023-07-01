@@ -1,5 +1,6 @@
 package com.academiadodesenvolvedor.tdd.services;
 
+import com.academiadodesenvolvedor.tdd.exceptions.NotFoundException;
 import com.academiadodesenvolvedor.tdd.models.Carro;
 import com.academiadodesenvolvedor.tdd.repositories.CarroRepository;
 import com.academiadodesenvolvedor.tdd.services.contratos.CarroServiceContrato;
@@ -106,12 +107,22 @@ public class CarroServiceTest {
     @Test
     @DisplayName("Testa se a service de apagando corretamente")
     public void apagaCarroTest() {
+        Carro carroSaved = this.criarCarro();
+        carroSaved.setId(1L);
+        Mockito.when(this.repository.findById(1L))
+                        .thenReturn(Optional.of(carroSaved));
+
          carroService.apagarCarro(1L);
 
-        Carro carro = carroService.buscarPorId(1L);
+         Mockito.when(this.repository.findById(1L)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(NotFoundException.class,() -> {
+             carroService.buscarPorId(1L);
+        });
 
 
-        Assertions.assertNull(carro);
+
+
     }
     @Test
     @DisplayName("Testa se a sobrecarga do listar carro esta funcionando corretamente")
@@ -122,6 +133,13 @@ public class CarroServiceTest {
         Page<Carro> carroPage = carroService.listarCarros(page);
 
         Assertions.assertTrue(carroPage.hasContent());
+    }
+    @Test
+    @DisplayName("Testa se a busca pode lancar exceçao")
+    public  void  deveLancarExecao(){
+        Assertions.assertThrows(NotFoundException.class, () ->{
+            this.carroService.buscarPorId(0L);
+        });
     }
 
 
